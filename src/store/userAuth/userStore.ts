@@ -2,7 +2,6 @@ import {IUser, IUserAuth} from "../../models/IUser.ts";
 import AuthService from "../../services/AuthService.ts";
 import { makeAutoObservable } from "mobx";
 import { dropToken, saveToken } from "../../utils/token.ts";
-import {Role} from "../../models/Role.ts";
 
 class UserStore {
   isLogin = false;
@@ -12,9 +11,9 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  setUser(login: string) {
-    this.user.login = login.split(' ')[4]
-    //role
+  setUser(email: string, role: string) {
+    this.user.email = email
+    this.user.role = role
   }
 
   setLogin(login: boolean) {
@@ -36,7 +35,7 @@ class UserStore {
       const response = await AuthService.login(login, password);
       saveToken(response.data.access_jwt_token);
       console.log(response)
-      this.setUser(response.data.message)
+      this.setUser(response.data.email, response.data.role)
       this.setLogin(true);
     } catch (e) {
       dropToken();
@@ -47,7 +46,7 @@ class UserStore {
   async authorization(userAuth: IUserAuth) {
     try {
       await this.registration(userAuth);
-      await this.login(userAuth.login, userAuth.password);
+      await this.login(userAuth.email, userAuth.password);
     } catch (e) {
       console.log(e);
     }

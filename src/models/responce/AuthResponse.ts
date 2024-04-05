@@ -4,7 +4,7 @@ export interface AuthResponse {
 }
 
 export interface AuthResponseData {
+  email: string;
+  role: string;
   access_jwt_token: string;
-  message: string;
-  refresh_jwt_token: string;
 }

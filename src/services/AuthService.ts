@@ -3,9 +3,9 @@ import { AuthResponseData } from "../models/responce/AuthResponse.ts";
 import { IUserAuth } from "../models/IUser.ts";
 
 export default class AuthService {
-  static async login(login: string, password: string) {
+  static async login(email: string, password: string) {
     return axiosInstance.post<AuthResponseData>("/auth/login", {
-      email: login,
+      email: email,
       password: password,
     });
   }
@@ -14,7 +14,7 @@ export default class AuthService {
     return axiosInstance.post<AuthResponseData>(
         `/auth/register_${userAuth.role.toLowerCase()}`,
       {
-        email: userAuth.login,
+        email: userAuth.email,
         password: userAuth.password,
       },
     );

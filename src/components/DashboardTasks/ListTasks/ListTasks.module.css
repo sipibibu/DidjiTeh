@@ -1,0 +1,8 @@
+.blockList {
+    display: flex;
+    flex-direction: column;
+    background: gray;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding-bottom: 20px;
+}

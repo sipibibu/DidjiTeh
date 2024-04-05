@@ -8,8 +8,8 @@ import {Role} from "../../models/Role.ts";
 
 const Registration = () => {
   const [userAuth, setUserAuth] = useState<IUserAuth>({
-    role: "None",
-    login: "",
+    role: "Employ",
+    email: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -28,9 +28,18 @@ const Registration = () => {
               placeholder={"Email"}
               type={"text"}
               className={styles.inputData}
-              value={userAuth.login}
+              value={userAuth.email}
               onChange={(e) =>
-                  setUserAuth({...userAuth, login: e.target.value})
+                  setUserAuth({...userAuth, email: e.target.value})
+              }
+          />
+          <input
+              placeholder={"Должность"}
+              type={"text"}
+              className={styles.inputData}
+              value={userAuth.email}
+              onChange={(e) =>
+                  setUserAuth({...userAuth, email: e.target.value})
               }
           />
           <input

@@ -147,7 +147,7 @@ export function validateRegistrationForm(user: IUserAuth) {
     toast.warn("Фамилия пользователя не должна быть пустой");
     return false;
   }
-  if (!/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+)/.test(user.login)) {
+  if (!/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+)/.test(user.email)) {
     toast.warn("Указан некорректный email");
     return false;
   }
