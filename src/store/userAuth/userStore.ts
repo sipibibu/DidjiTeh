@@ -2,6 +2,7 @@ import {IUser, IUserAuth} from "../../models/IUser.ts";
 import AuthService from "../../services/AuthService.ts";
 import { makeAutoObservable } from "mobx";
 import { dropToken, saveToken } from "../../utils/token.ts";
+import {Role} from "../../models/Role.ts";
 
 class UserStore {
   isLogin = false;
@@ -13,6 +14,7 @@ class UserStore {
 
   setUser(login: string) {
     this.user.login = login.split(' ')[4]
+    //role
   }
 
   setLogin(login: boolean) {
@@ -50,56 +52,6 @@ class UserStore {
       console.log(e);
     }
   }
-
-  // async getAccount() {
-  //   try {
-  //     const response = await ProfileService.getAccount();
-  //     this.isLogin = true;
-  //     if (response.roles[0] == "Respondent") {
-  //       this.setRole(Role.Respondent);
-  //       this.setRespondent({
-  //         name: response.firstName,
-  //         surname: response.lastName,
-  //         login: response.email,
-  //         role: response.roles[0],
-  //         additionalData: {
-  //           imageUrl: response.image,
-  //           age: response.age,
-  //           education: response.education,
-  //           interests: response.interests,
-  //         },
-  //       });
-  //     } else {
-  //       this.setRole(Role.Manager);
-  //       this.setManager({
-  //         name: response.firstName,
-  //         surname: response.lastName,
-  //         login: response.email,
-  //         role: response.roles[0],
-  //         additionalData: {
-  //           companyName: response.company.title,
-  //           description: response.company.description,
-  //         },
-  //       });
-  //     }
-  //   } catch (e) {
-  //     this.setRole(Role.NoAuth);
-  //     dropToken();
-  //     console.log(e);
-  //   }
-  // }
-  //
-  // async logout() {
-  //   try {
-  //     dropToken();
-  //     this.setLogin(false);
-  //     this.setRole(Role.NoAuth);
-  //     this.setRespondent({} as IRespondent);
-  //     this.setManager({} as IManager);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
 }
 
 export default new UserStore();

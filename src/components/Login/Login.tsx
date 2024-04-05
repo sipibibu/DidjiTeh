@@ -1,7 +1,7 @@
 import styles from "../../styles/Authorization.module.css";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useStores } from "../../rootStoreContext.ts";
 
 const Login = () => {

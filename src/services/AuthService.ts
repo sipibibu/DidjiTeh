@@ -12,15 +12,11 @@ export default class AuthService {
 
   static async registration(userAuth: IUserAuth) {
     return axiosInstance.post<AuthResponseData>(
-      "/auth/register",
+        `/auth/register_${userAuth.role.toLowerCase()}`,
       {
         email: userAuth.login,
         password: userAuth.password,
       },
     );
-  }
-
-  static async logout() {
-    return await axiosInstance.post("/auth/logout");
   }
 }

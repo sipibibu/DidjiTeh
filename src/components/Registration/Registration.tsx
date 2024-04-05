@@ -1,12 +1,14 @@
 import styles from "../../styles/Authorization.module.css";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { IUserAuth } from "../../models/IUser.ts";
 import { useStores } from "../../rootStoreContext.ts";
+import {Role} from "../../models/Role.ts";
 
 const Registration = () => {
   const [userAuth, setUserAuth] = useState<IUserAuth>({
+    role: "None",
     login: "",
     password: "",
   });
@@ -23,37 +25,49 @@ const Registration = () => {
       <div className={styles.loginContent}>
         <div className={styles.inputBlock}>
           <input
-            placeholder={"Email"}
-            type={"text"}
-            className={styles.inputData}
-            value={userAuth.login}
-            onChange={(e) =>
-              setUserAuth({ ...userAuth, login: e.target.value })
-            }
+              placeholder={"Email"}
+              type={"text"}
+              className={styles.inputData}
+              value={userAuth.login}
+              onChange={(e) =>
+                  setUserAuth({...userAuth, login: e.target.value})
+              }
           />
           <input
-            placeholder={"Пароль"}
-            type={"password"}
-            className={styles.inputData}
-            value={userAuth.password}
-            onChange={(e) =>
-              setUserAuth({ ...userAuth, password: e.target.value })
-            }
+              placeholder={"Пароль"}
+              type={"password"}
+              className={styles.inputData}
+              value={userAuth.password}
+              onChange={(e) =>
+                  setUserAuth({...userAuth, password: e.target.value})
+              }
           />
+        </div>
+        <div className={styles.roleBlock}>
+          <div className={styles.textRole}>Выберите роль</div>
+          <select
+              className={styles.selectBlock}
+              value={userAuth.role}
+              onChange={(e) => setUserAuth({...userAuth, role: e.target.value})}
+          >
+            <option value={Role.Employ}>Сотрудник</option>
+            <option value={Role.Customer}>Заказчик</option>
+            <option value={Role.Manager}>Менеджер</option>
+          </select>
         </div>
         <div className={styles.loginBtnBlock}>
           <button
-            className={styles.loginBtn}
-            onClick={() => registration(userAuth)}
-            type={"submit"}
+              className={styles.loginBtn}
+              onClick={() => registration(userAuth)}
+              type={"submit"}
           >
             Зарегистрироваться
           </button>
           <div className={styles.accountBlock}>
             <div className={styles.accountText}>У вас есть аккаунт?</div>
             <button
-              className={styles.accountButton}
-              onClick={() => navigate("/login")}
+                className={styles.accountButton}
+                onClick={() => navigate("/login")}
             >
               Войти
             </button>

@@ -6,7 +6,7 @@ import Login from "./components/Login/Login.tsx";
 import { useStores } from "./rootStoreContext.ts";
 import "react-toastify/dist/ReactToastify.css";
 import { observer } from "mobx-react-lite";
-import Tasks from "./pages/Tasks/Tasks.tsx";
+import DashboardTasks from "./pages/DashboardTasksPage/DashboardTasks.tsx";
 
 function App() {
   const { userStore } = useStores();
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path={"/registration"} element={<Registration />} />
           <Route path={"/login"} element={<Login />} />
-          <Route path={"/"} element={<Tasks />}/>
+          {/*<Route path={"/"} element={<DashboardTasks />}/>*/}
         </Routes>
       </BrowserRouter>
     </>
